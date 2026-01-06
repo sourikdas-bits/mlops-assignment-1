@@ -1,0 +1,10 @@
+FROM python:3.12
+
+WORKDIR /app
+COPY setup/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY source/ source/
+COPY model/ model/
+
+CMD ["uvicorn", "source.app:app", "--host", "0.0.0.0", "--port", "8000"]

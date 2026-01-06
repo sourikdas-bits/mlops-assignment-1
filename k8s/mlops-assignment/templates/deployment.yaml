@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heart-disease-api
+  namespace: app
+  labels:
+    app: heart-disease
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: heart-disease
+  template:
+    metadata:
+      labels:
+        app: heart-disease
+    spec:
+      containers:
+      - name: api
+        image: sourikdasbits/bitsmlops:heart-disease-api-v2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MLFLOW_TRACKING_URI
+          value: "http://68.154.3.59:5000"
