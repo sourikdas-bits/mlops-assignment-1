@@ -1,0 +1,342 @@
+Started by user unknown or anonymous
+Obtained Jenkinsfile from git https://github.com/sourikdas-bits/mlops-assignment-1.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/mlops-assignment-1
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/mlops-assignment-1/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/sourikdas-bits/mlops-assignment-1.git # timeout=10
+Fetching upstream changes from https://github.com/sourikdas-bits/mlops-assignment-1.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/sourikdas-bits/mlops-assignment-1.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/assignment^{commit} # timeout=10
+Checking out Revision 04d98da3a53e2281a80d74ca21aa4e51d440cfca (refs/remotes/origin/assignment)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 04d98da3a53e2281a80d74ca21aa4e51d440cfca # timeout=10
+Commit message: "fixed"
+ > git rev-list --no-walk 04d98da3a53e2281a80d74ca21aa4e51d440cfca # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone Repository)
+[Pipeline] withCredentials
+Masking supported pattern matches of $GITHUB_TOKEN
+[Pipeline] {
+[Pipeline] git
+Warning: A secret was passed to "git" using Groovy String interpolation, which is insecure.
+		 Affected argument(s) used the following variable(s): [GITHUB_TOKEN]
+		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/mlops-assignment-1/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://sourikdas-bits:****@github.com/sourikdas-bits/mlops-assignment-1.git # timeout=10
+Fetching upstream changes from https://sourikdas-bits@github.com/sourikdas-bits/mlops-assignment-1.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://sourikdas-bits:****@github.com/sourikdas-bits/mlops-assignment-1.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/assignment^{commit} # timeout=10
+Checking out Revision 04d98da3a53e2281a80d74ca21aa4e51d440cfca (refs/remotes/origin/assignment)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 04d98da3a53e2281a80d74ca21aa4e51d440cfca # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D assignment # timeout=10
+ > git checkout -b assignment 04d98da3a53e2281a80d74ca21aa4e51d440cfca # timeout=10
+Commit message: "fixed"
+ > git rev-list --no-walk 04d98da3a53e2281a80d74ca21aa4e51d440cfca # timeout=10
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Linting)
+[Pipeline] sh
++ . /home/sourik/mlflow-project/mlflow-env/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ hash -r
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ [  = cygwin ]
++ [  = msys ]
++ export VIRTUAL_ENV=/home/sourik/mlflow-project/mlflow-env
++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/home/sourik/mlflow-project/mlflow-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(mlflow-env) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(mlflow-env) 
++ export VIRTUAL_ENV_PROMPT
++ hash -r
++ pip install flake8
+Requirement already satisfied: flake8 in /home/sourik/mlflow-project/mlflow-env/lib/python3.12/site-packages (7.3.0)
+Requirement already satisfied: mccabe<0.8.0,>=0.7.0 in /home/sourik/mlflow-project/mlflow-env/lib/python3.12/site-packages (from flake8) (0.7.0)
+Requirement already satisfied: pycodestyle<2.15.0,>=2.14.0 in /home/sourik/mlflow-project/mlflow-env/lib/python3.12/site-packages (from flake8) (2.14.0)
+Requirement already satisfied: pyflakes<3.5.0,>=3.4.0 in /home/sourik/mlflow-project/mlflow-env/lib/python3.12/site-packages (from flake8) (3.4.0)
++ flake8 .
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Model Training)
+[Pipeline] sh
++ ls -ltR .
+.:
+total 40
+drwxr-xr-x 2 jenkins jenkins 4096 Jan  6 09:46 output
+drwxr-xr-x 2 jenkins jenkins 4096 Jan  6 05:04 model
+drwxr-xr-x 2 jenkins jenkins 4096 Jan  6 05:04 model_Random_Forest_20260106_050412
+drwxr-xr-x 2 jenkins jenkins 4096 Jan  6 05:04 model_Logistic_Regression_20260106_050405
+-rw-r--r-- 1 jenkins jenkins 1130 Jan  6 05:03 Jenkinsfile
+drwxr-xr-x 4 jenkins jenkins 4096 Jan  6 05:03 source
+drwxr-xr-x 3 jenkins jenkins 4096 Jan  6 04:10 tests
+drwxr-xr-x 2 jenkins jenkins 4096 Jan  6 04:10 setup
+-rw-r--r-- 1 jenkins jenkins   43 Jan  6 04:10 README.md
+drwxr-xr-x 2 jenkins jenkins 4096 Jan  6 04:10 data
+
+./output:
+total 256
+-rw-r--r-- 1 jenkins jenkins  25951 Jan  6 09:46 roc_curve_Random_Forest.png
+-rw-r--r-- 1 jenkins jenkins  25982 Jan  6 09:46 roc_curve_Logistic_Regression.png
+-rw-r--r-- 1 jenkins jenkins  17819 Jan  6 09:46 confusion_matrix_Logistic_Regression.png
+-rw-r--r-- 1 jenkins jenkins  16917 Jan  6 09:46 confusion_matrix_Random_Forest.png
+-rw-r--r-- 1 jenkins jenkins  40072 Jan  6 04:10 correlation_heatmap.png
+-rw-r--r-- 1 jenkins jenkins 108812 Jan  6 04:10 feature_histograms.png
+-rw-r--r-- 1 jenkins jenkins  12144 Jan  6 04:10 class_balance.png
+
+./model:
+total 8
+-rw-r--r-- 1 jenkins jenkins 2512 Jan  6 05:04 best_heart_disease_model_v2.pkl
+-rw-r--r-- 1 jenkins jenkins 2512 Jan  6 04:10 best_heart_disease_model_v1.pkl
+
+./model_Random_Forest_20260106_050412:
+total 748
+-rw-r--r-- 1 jenkins jenkins    104 Jan  6 05:04 python_env.yaml
+-rw-r--r-- 1 jenkins jenkins    109 Jan  6 05:04 requirements.txt
+-rw-r--r-- 1 jenkins jenkins    228 Jan  6 05:04 conda.yaml
+-rw-r--r-- 1 jenkins jenkins    494 Jan  6 05:04 MLmodel
+-rw-r--r-- 1 jenkins jenkins 745680 Jan  6 05:04 model.pkl
+
+./model_Logistic_Regression_20260106_050405:
+total 20
+-rw-r--r-- 1 jenkins jenkins  104 Jan  6 05:04 python_env.yaml
+-rw-r--r-- 1 jenkins jenkins  109 Jan  6 05:04 requirements.txt
+-rw-r--r-- 1 jenkins jenkins  228 Jan  6 05:04 conda.yaml
+-rw-r--r-- 1 jenkins jenkins  492 Jan  6 05:04 MLmodel
+-rw-r--r-- 1 jenkins jenkins 2512 Jan  6 05:04 model.pkl
+
+./source:
+total 24
+-rwxr-xr-x 1 jenkins jenkins 6430 Jan  6 05:03 2_3_4_build_model.py
+drwxr-xr-x 2 jenkins jenkins 4096 Jan  6 04:10 model_Random_Forest_20260105_174946
+drwxr-xr-x 2 jenkins jenkins 4096 Jan  6 04:10 model_Logistic_Regression_20260105_174939
+-rwxr-xr-x 1 jenkins jenkins 1666 Jan  6 04:10 1_analyze_data.py
+-rwxr-xr-x 1 jenkins jenkins 1065 Jan  6 04:10 0_download_data.py
+
+./source/model_Random_Forest_20260105_174946:
+total 748
+-rw-r--r-- 1 jenkins jenkins 745680 Jan  6 04:10 model.pkl
+-rw-r--r-- 1 jenkins jenkins    104 Jan  6 04:10 python_env.yaml
+-rw-r--r-- 1 jenkins jenkins    109 Jan  6 04:10 requirements.txt
+-rw-r--r-- 1 jenkins jenkins    228 Jan  6 04:10 conda.yaml
+-rw-r--r-- 1 jenkins jenkins    494 Jan  6 04:10 MLmodel
+
+./source/model_Logistic_Regression_20260105_174939:
+total 20
+-rw-r--r-- 1 jenkins jenkins  228 Jan  6 04:10 conda.yaml
+-rw-r--r-- 1 jenkins jenkins 2512 Jan  6 04:10 model.pkl
+-rw-r--r-- 1 jenkins jenkins  104 Jan  6 04:10 python_env.yaml
+-rw-r--r-- 1 jenkins jenkins  109 Jan  6 04:10 requirements.txt
+-rw-r--r-- 1 jenkins jenkins  492 Jan  6 04:10 MLmodel
+
+./tests:
+total 8
+drwxr-xr-x 2 jenkins jenkins 4096 Jan  6 09:46 __pycache__
+-rwxr-xr-x 1 jenkins jenkins  742 Jan  6 04:10 5_run_test.py
+
+./tests/__pycache__:
+total 4
+-rw-r--r-- 1 jenkins jenkins 2960 Jan  6 09:46 5_run_test.cpython-312-pytest-9.0.2.pyc
+
+./setup:
+total 4
+-rw-r--r-- 1 jenkins jenkins 312 Jan  6 04:10 requirements.txt
+
+./data:
+total 16
+-rw-r--r-- 1 jenkins jenkins 12475 Jan  6 04:10 heart.csv
++ ls -ltr ../
+total 8
+drwxr-xr-x 12 jenkins jenkins 4096 Jan  6 05:04 mlops-assignment-1
+drwxr-xr-x  3 jenkins jenkins 4096 Jan  6 09:46 mlops-assignment-1@tmp
++ ls -ltr ../../
+total 100
+-rw-r--r--  1 jenkins jenkins    64 Jan  5 11:46 secret.key
+-rw-r--r--  1 jenkins jenkins     0 Jan  5 11:46 secret.key.not-so-secret
+-rw-r--r--  1 jenkins jenkins   171 Jan  5 11:46 jenkins.telemetry.Correlator.xml
+drwxr-xr-x  2 jenkins jenkins  4096 Jan  5 11:46 userContent
+drwxr-xr-x 91 jenkins jenkins 12288 Jan  5 11:52 plugins
+drwxr-xr-x  2 jenkins jenkins  4096 Jan  5 11:52 updates
+-rw-------  1 jenkins jenkins  1680 Jan  5 11:52 identity.key.enc
+-rw-r--r--  1 jenkins jenkins   370 Jan  5 11:52 hudson.plugins.git.GitTool.xml
+drwxr-xr-x  3 jenkins jenkins  4096 Jan  5 11:53 users
+drwxr-xr-x  2 jenkins jenkins  4096 Jan  5 11:53 logs
+-rw-r--r--  1 jenkins jenkins   181 Jan  5 11:53 jenkins.model.JenkinsLocationConfiguration.xml
+-rw-r--r--  1 jenkins jenkins     7 Jan  5 11:53 jenkins.install.UpgradeWizard.state
+drwxr-xr-x  3 jenkins jenkins  4096 Jan  6 03:36 jobs
+-rw-r--r--  1 jenkins jenkins  1653 Jan  6 03:41 credentials.xml
+drwx------  2 jenkins jenkins  4096 Jan  6 04:10 secrets
+drwxr-xr-x  3 jenkins jenkins  4096 Jan  6 04:10 fingerprints
+drwxr-xr-x  4 jenkins jenkins  4096 Jan  6 04:10 caches
+drwxr-xr-x  4 jenkins jenkins  4096 Jan  6 04:10 workspace
+-rw-r--r--  1 jenkins jenkins   259 Jan  6 05:21 queue.xml.bak
+-rw-r--r--  1 jenkins jenkins   156 Jan  6 05:21 hudson.model.UpdateCenter.xml
+-rw-r--r--  1 jenkins jenkins  1037 Jan  6 05:21 nodeMonitors.xml
+-rw-r--r--  1 jenkins jenkins     7 Jan  6 05:21 jenkins.install.InstallUtil.lastExecVersion
+-rw-r--r--  1 jenkins jenkins  1620 Jan  6 05:21 config.xml
+-rw-r--r--  1 jenkins jenkins   179 Jan  6 09:46 org.jenkinsci.plugins.workflow.flow.FlowExecutionList.xml
+[Pipeline] sh
++ . /home/sourik/mlflow-project/mlflow-env/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ hash -r
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ [  = cygwin ]
++ [  = msys ]
++ export VIRTUAL_ENV=/home/sourik/mlflow-project/mlflow-env
++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/home/sourik/mlflow-project/mlflow-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(mlflow-env) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(mlflow-env) 
++ export VIRTUAL_ENV_PROMPT
++ hash -r
++ python source/2_3_4_build_model.py
+2026/01/06 09:46:11 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+2026/01/06 09:46:19 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+/var/lib/jenkins/workspace/mlops-assignment-1/source/2_3_4_build_model.py:157: FutureWarning: ``mlflow.tracking.client.MlflowClient.get_latest_versions`` is deprecated since 2.9.0. Model registry stages will be removed in a future major release. To learn more about the deprecation of model registry stages, see our migration guide here: https://mlflow.org/docs/latest/model-registry.html#migrating-from-stages
+  latest_versions = client.get_latest_versions(model_registry_name)
+Registered model 'HeartDiseaseModel' already exists. Creating a new version of this model...
+2026/01/06 09:46:25 WARNING mlflow.tracking._model_registry.fluent: Run with id 4a789f5e00cc418e82ed5ac56cf509b2 has no artifacts at artifact path 'model', registering model based on models:/m-a8f8157479954b688d21a58c58dbe393 instead
+2026/01/06 09:46:25 INFO mlflow.store.model_registry.abstract_store: Waiting up to 300 seconds for model version to finish creation. Model name: HeartDiseaseModel, version 3
+Created version '3' of model 'HeartDiseaseModel'.
+🏃 View run Logistic Regression at: http://localhost:5000/#/experiments/1/runs/4a789f5e00cc418e82ed5ac56cf509b2
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+🏃 View run Random Forest at: http://localhost:5000/#/experiments/1/runs/5bdf8a2c18fb4da6b5ed0c080774da4f
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+Model: Logistic Regression
+  cv_auc_mean: 0.8960
+  cv_accuracy_mean: 0.8264
+  cv_precision_mean: 0.8441
+  cv_recall_mean: 0.7652
+  test_accuracy: 0.8689
+  test_precision: 0.8125
+  test_recall: 0.9286
+  test_roc_auc: 0.9513
+
+Model: Random Forest
+  cv_auc_mean: 0.8799
+  cv_accuracy_mean: 0.8058
+  cv_precision_mean: 0.8243
+  cv_recall_mean: 0.7470
+  test_accuracy: 0.8852
+  test_precision: 0.8182
+  test_recall: 0.9643
+  test_roc_auc: 0.9513
+
+Best Model: Logistic Regression with Test ROC AUC: 0.9513
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit Testing)
+[Pipeline] sh
++ . /home/sourik/mlflow-project/mlflow-env/bin/activate
++ deactivate nondestructive
++ [ -n  ]
++ [ -n  ]
++ hash -r
++ [ -n  ]
++ unset VIRTUAL_ENV
++ unset VIRTUAL_ENV_PROMPT
++ [ ! nondestructive = nondestructive ]
++ [  = cygwin ]
++ [  = msys ]
++ export VIRTUAL_ENV=/home/sourik/mlflow-project/mlflow-env
++ _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ PATH=/home/sourik/mlflow-project/mlflow-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin
++ export PATH
++ [ -n  ]
++ [ -z  ]
++ _OLD_VIRTUAL_PS1=$ 
++ PS1=(mlflow-env) $ 
++ export PS1
++ VIRTUAL_ENV_PROMPT=(mlflow-env) 
++ export VIRTUAL_ENV_PROMPT
++ hash -r
++ pip install pytest
+Requirement already satisfied: pytest in /home/sourik/mlflow-project/mlflow-env/lib/python3.12/site-packages (9.0.2)
+Requirement already satisfied: iniconfig>=1.0.1 in /home/sourik/mlflow-project/mlflow-env/lib/python3.12/site-packages (from pytest) (2.3.0)
+Requirement already satisfied: packaging>=22 in /home/sourik/mlflow-project/mlflow-env/lib/python3.12/site-packages (from pytest) (25.0)
+Requirement already satisfied: pluggy<2,>=1.5 in /home/sourik/mlflow-project/mlflow-env/lib/python3.12/site-packages (from pytest) (1.6.0)
+Requirement already satisfied: pygments>=2.7.2 in /home/sourik/mlflow-project/mlflow-env/lib/python3.12/site-packages (from pytest) (2.19.2)
++ pytest -s tests/
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0
+rootdir: /var/lib/jenkins/workspace/mlops-assignment-1
+plugins: anyio-4.12.0
+collected 2 items
+
+tests/5_run_test.py Downloading artifacts:   0%|          | 0/5 [00:00<?, ?it/s]Downloading artifacts:  20%|██        | 1/5 [00:00<00:00, 19972.88it/s]Downloading artifacts:  40%|████      | 2/5 [00:00<00:00, 733.46it/s]  Downloading artifacts:  60%|██████    | 3/5 [00:00<00:00, 735.89it/s]Downloading artifacts:  80%|████████  | 4/5 [00:00<00:00, 430.70it/s]Downloading artifacts: 100%|██████████| 5/5 [00:00<00:00, 171.93it/s]Downloading artifacts: 100%|██████████| 5/5 [00:00<00:00, 171.36it/s]
+.Downloading artifacts:   0%|          | 0/5 [00:00<?, ?it/s]Downloading artifacts:  20%|██        | 1/5 [00:00<00:00, 82.84it/s]Downloading artifacts:  40%|████      | 2/5 [00:00<00:00, 161.55it/s]Downloading artifacts:  60%|██████    | 3/5 [00:00<00:00, 180.11it/s]Downloading artifacts:  80%|████████  | 4/5 [00:00<00:00, 84.40it/s] Downloading artifacts: 100%|██████████| 5/5 [00:00<00:00, 92.04it/s]Downloading artifacts: 100%|██████████| 5/5 [00:00<00:00, 91.84it/s]
+Original Input Data:
+   age  sex  cp  trestbps  chol  fbs  ...  thalach  exang  oldpeak  slope  ca  thal
+0   55    1   2       140   250    0  ...      150      0      1.0      2   0     2
+
+[1 rows x 13 columns]
+Prediction:
+[0]
+.
+
+============================== 2 passed in 1.83s ===============================
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Pipeline completed.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
